@@ -1,20 +1,28 @@
-# VOID3D: Beaconfall
+# Beaconfall · The Keeper's Atlas
 
-A single-file, first-person survival slice on one procedural pine coast. Gather timber and emberstone, make a torch, and relight the old beacon before night takes the shore.
+Third-person survival slice on a storybook island. The Keeper is visible, the camera follows and orbits, and the gather → prepare → relight loop remains central.
 
 ## Play
 
-Open `index.html` in a modern browser with an internet connection. Three.js loads from jsDelivr.
+Open `index.html` in a modern browser with an internet connection. Three.js loads from jsDelivr; all game art is procedural.
 
-- **WASD** move · **Mouse** look · **Shift** sprint · **Space** jump
-- **E** gather/use · **Click** strike · **I** pack · **Esc or P** pause
-- Gather **4 timber + 3 emberstone** to relight the beacon.
-- Enter a seed to regenerate the same coast. Progress autosaves locally; **Continue** restores gathered resources.
+- **WASD** move relative to camera · **Drag** orbit · **Wheel** zoom
+- **Shift** run · **Space** hop · **E** gather/use · **Click** strike
+- **I** satchel · **Esc or P** pause
+- Gather **4 driftwood + 3 heartglass** to wake the beacon. Pick wild berries with E and eat them from the satchel to restore hunger.
+- Island seed reproduces the same coast; Continue restores gathered nodes and inventory.
 
-## Verified
+## Issue disposition
 
-Victor played the loop in Chromium with real WebGL: gathering, torch craft, beacon relight, wisp combat and reward, night damage/spawns, pause and save/Continue, with zero console errors. The recent fix pass also tested movement after a camera turn, Esc/pointer-lock pause, collected-resource persistence, victory return-to-title and starting a new run. Buildkite build #7 passed.
+- **Food lockout: fixed.** Berry bushes provide finite food nodes; the satchel consumes berries to restore hunger. Harvested bushes persist across Continue.
+- **GPU leak on replay: fixed.** Replay disposes unique scene geometries, materials, textures, shadow maps, renderer lists, and the renderer.
+- **Three.js r160 UMD: deferred.** The no-build single-HTML classic-script loader remains pinned and functional. Migration needs a deliberate ESM/import-map change plus browser/CDN validation; it is not claimed as fixed.
+- **Torch safety: implemented, WebGL validation pending.** A fueled, equipped hand lantern repels wisps inside its radius; beacon protection remains broader.
+- **Dead wisps: implemented, WebGL validation pending.** Killed-wisp resources are disposed and dead instances are pruned from the live array.
+- **Minimap heading: implemented, WebGL validation pending.** Terrain and markers rotate together with player heading; the label reflects heading-up behavior.
 
-## Known limits
+## Verification
 
-No food restoration/source, no full campaign or extra biomes, and no measured long-session performance guarantee. Repeated-run GPU cleanup and upgrading from Three.js r160 UMD remain follow-up work. Wisps are not repelled by the hand torch, dead wisp entries remain in the array, and the minimap still needs a direction check. The in-game CUT LIST is the authority on excluded systems.
+The inline script passes `node --check`. Local logic regression checks pass for camera orbit, camera-relative movement, zoom, pause fallback, berry harvest, hunger restoration, berry persistence through Continue, and replay renderer/scene disposal, with no JavaScript errors in the harness. This harness uses a Three.js test double and is not a WebGL pass.
+
+**Keep this PR draft until a real-browser WebGL playthrough verifies** the third-person camera feel, lantern repel, minimap orientation, gathering/crafting, pause/save/Continue, and beacon/victory flow. One island, one beacon, one wisp archetype. Multi-island campaign, boss, NPC questlines, advanced navigation, weather, full economy, manual save slots, UMD-to-ESM migration, and long-session performance guarantees remain out of scope.
