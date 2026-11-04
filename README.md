@@ -11,6 +11,7 @@ Open `index.html` in a modern browser with an internet connection. Three.js load
 - **I** satchel · **J** Keeper's ledger · **Esc or P** pause
 - Read three traces at the wreck, compass ruin, and Gold Crown. Each choice gives a different practical reward, persists in the ledger, and contributes to the closing reading. There is no morality score.
 - After all three traces, gather **4 driftwood + 3 heartglass** to wake the beacon. Pick and eat wild berries to restore hunger.
+- Use [BROWSER-PLAYTHROUGH-CHECKLIST.md](BROWSER-PLAYTHROUGH-CHECKLIST.md) for the repeatable real-WebGL acceptance run.
 
 ## Save compatibility
 
