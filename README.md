@@ -1,6 +1,6 @@
 # Beaconfall · The Keeper's Atlas
 
-Third-person survival slice on a storybook island. The Keeper is visible, the camera follows and orbits, and the gather → prepare → relight loop remains central.
+Third-person survival slice on a storybook island. The Keeper is visible, the camera follows and orbits, and the gather → prepare → relight loop stays central.
 
 ## Play
 
@@ -8,28 +8,29 @@ Open `index.html` in a modern browser with an internet connection. Three.js load
 
 - **WASD** move relative to camera · **Drag** orbit · **Wheel** zoom
 - **Shift** run · **Space** hop · **E** gather/use · **Click** strike
-- **I** satchel · **Esc or P** pause
-- Gather **4 driftwood + 3 heartglass** to wake the beacon. Pick wild berries with E and eat them from the satchel to restore hunger.
-- Island seed reproduces the same coast; Continue restores gathered nodes and inventory.
+- **I** satchel · **J** Keeper's ledger · **Esc or P** pause
+- Read three traces at the wreck, compass ruin, and Gold Crown. Each choice gives a different practical reward, persists in the ledger, and contributes to the closing reading. There is no morality score.
+- After all three traces, gather **4 driftwood + 3 heartglass** to wake the beacon. Pick and eat wild berries to restore hunger.
+
+## Save compatibility
+
+Continue restores saves from this build. Saves under the earlier `void3d.slice.save` key are intentionally **not migrated** and are ignored; start a fresh journey on this build. The previous saves are abandoned, not converted.
 
 ## Issue disposition
 
-- **Food lockout: fixed.** Berry bushes provide finite food nodes; the satchel consumes berries to restore hunger. Harvested bushes persist across Continue.
-- **GPU leak on replay: fixed.** Replay disposes unique scene geometries, materials, textures, shadow maps, renderer lists, and the renderer.
-- **Three.js r160 UMD: deferred.** The no-build single-HTML classic-script loader remains pinned and functional. Migration needs a deliberate ESM/import-map change plus browser/CDN validation; it is not claimed as fixed.
-- **Torch safety: implemented, WebGL validation pending.** A fueled, equipped hand lantern repels wisps inside its radius; beacon protection remains broader.
-- **Dead wisps: implemented, WebGL validation pending.** Killed-wisp resources are disposed and dead instances are pruned from the live array.
-- **Minimap heading: implemented, WebGL validation pending.** Terrain and markers rotate together with player heading; the label reflects heading-up behavior.
+- **Food lockout: fixed.** Finite berry bushes restore hunger; harvests persist through Continue.
+- **GPU leak on replay: fixed.** Replay disposes unique scene geometries, materials, textures, shadow maps, renderer lists, and renderer.
+- **Three.js r160 UMD: deferred.** The no-build single-HTML classic-script loader remains pinned. ESM/import-map migration is a separate change requiring browser/CDN validation.
+- **Lantern repel: verified in real WebGL.** A fueled, equipped hand lantern repels wisps within its radius; beacon protection covers a wider area.
+- **Dead-wisp cleanup: verified in real WebGL.** Killed wisps are disposed and removed from the live list.
+- **Heading-up minimap: implemented.** Terrain and markers rotate together with player heading.
+- **Crown trace target: fixed.** Story sites are prioritized before harvest nodes when the interaction distance ties, so the Gold Crown's story opens without chopping it.
+- **Victory-ledger pause: fixed.** Opening the ledger from the victory screen clears the ending state, so pause works after the ledger is closed.
 
 ## Verification
 
-The inline script passes `node --check`. Local logic regression checks pass for camera orbit, camera-relative movement, zoom, pause fallback, berry harvest, hunger restoration, berry persistence through Continue, and replay renderer/scene disposal, with no JavaScript errors in the harness. This harness uses a Three.js test double and is not a WebGL pass.
+Victor's real-WebGL playthrough reported zero console errors and verified the third-person Keeper and camera, camera-relative movement, all three story dialogs and rewards, cross-site echoes, the three-trace beacon gate, beacon lighting, victory and the ledger's “a record, not a score” wording, berry gather/eat, lantern craft/equip/fuel, night shade spawn/chase, lantern repel, kill pruning, and Continue restoring story choices, harvests, and berries.
 
-**Keep this PR draft until a real-browser WebGL playthrough verifies** the third-person camera feel, lantern repel, minimap orientation, gathering/crafting, pause/save/Continue, and beacon/victory flow. One island, one beacon, one wisp archetype. Multi-island campaign, boss, NPC questlines, advanced navigation, weather, full economy, manual save slots, UMD-to-ESM migration, and long-session performance guarantees remain out of scope.
+Follow-up regression checks on the current build verify Crown wins target selection over the colocated golden harvest tree, the victory-ledger handler resets both `ending` and `paused`, pause can open after closing the ledger, and the inline game script parses. The fixes do not change the already-tested WebGL gameplay path.
 
-
-## Chapter I: The Unanswered Signal
-
-Three persistent landmark encounters at the wreck, compass ruin, and Gold Crown shape a Keeper?s ledger and the closing reading. Each choice grants a practical resource; there is no morality score. The old beacon stays gated until all three traces are recorded. The ledger is available from the satchel or J, and the ending can open it without losing the victory screen.
-
-Verification status: focused static story checks pass on the local chapter build. A real-browser WebGL playthrough of this updated story build is still required before this draft PR is ready for review.
+One island, one beacon, one wisp archetype. Multi-island campaign, boss, NPC questlines, advanced enemy navigation, weather, full economy, manual save slots, UMD-to-ESM migration, and long-session performance guarantees remain out of scope.
