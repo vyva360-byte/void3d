@@ -22,4 +22,4 @@ This is not the full campaign in the original pitch. Five islands, additional bi
 
 ## Checks
 
-JavaScript syntax and static structure pass. Runtime/browser play and performance are not yet verified; no FPS or memory-growth guarantee is claimed.
+JavaScript syntax and static structure pass. Browser smoke check on the committed build: title → start → rendered 3D scene/HUD → pause → save/return → Continue. Resource gathering, pack crafting, combat interaction, console-error capture, performance, and long-session stability remain unverified; no FPS or memory-growth guarantee is claimed.
