@@ -26,3 +26,10 @@ Open `index.html` in a modern browser with an internet connection. Three.js load
 The inline script passes `node --check`. Local logic regression checks pass for camera orbit, camera-relative movement, zoom, pause fallback, berry harvest, hunger restoration, berry persistence through Continue, and replay renderer/scene disposal, with no JavaScript errors in the harness. This harness uses a Three.js test double and is not a WebGL pass.
 
 **Keep this PR draft until a real-browser WebGL playthrough verifies** the third-person camera feel, lantern repel, minimap orientation, gathering/crafting, pause/save/Continue, and beacon/victory flow. One island, one beacon, one wisp archetype. Multi-island campaign, boss, NPC questlines, advanced navigation, weather, full economy, manual save slots, UMD-to-ESM migration, and long-session performance guarantees remain out of scope.
+
+
+## Chapter I: The Unanswered Signal
+
+Three persistent landmark encounters at the wreck, compass ruin, and Gold Crown shape a Keeper?s ledger and the closing reading. Each choice grants a practical resource; there is no morality score. The old beacon stays gated until all three traces are recorded. The ledger is available from the satchel or J, and the ending can open it without losing the victory screen.
+
+Verification status: focused static story checks pass on the local chapter build. A real-browser WebGL playthrough of this updated story build is still required before this draft PR is ready for review.
