@@ -1,25 +1,18 @@
-# VOID3D: Beaconfall
+# void3d
 
-A single-file first-person survival slice. Explore one procedural pine coast, gather materials, craft a torch, and relight the old beacon before night turns dangerous.
+A single-file Three.js survival slice for Beaconfall.
 
 ## Play
 
-Open `index.html` in a modern browser with an internet connection. Three.js loads from jsDelivr; no other assets, build step, server, or installation are needed.
+Open `index.html` in a modern browser with an internet connection. Three.js is loaded from jsDelivr.
 
-- **WASD** move, **mouse** look, **Shift** sprint, **Space** jump
-- **E** gather nearby timber or emberstone, or relight the beacon
-- **Click** strike a nearby wisp, **I** open your pack, **Esc** pause
-- The beacon costs **4 timber + 3 emberstone**. Crafting a torch is optional.
-- Enter a seed to regenerate the same coast. Progress autosaves locally; **Continue** resumes in that browser.
+- WASD move, mouse look, Shift sprint, Space jump
+- E gathers or uses nearby objects; click attacks; I opens pack; Esc or P pauses
+- Gather 4 timber and 3 emberstone to relight the beacon
+- Enter a world seed for a repeatable coast. Continue restores the latest local save.
 
-## In this slice
+## Verified scope
 
-Procedural island terrain and pine trees, first-person movement, tree/crystal gathering, a beacon objective and safe radius, optional torch crafting, day/night pressure, one hostile wisp, a rotating minimap, and local save/continue.
+One procedural pine coast, gathering, lantern crafting, one beacon objective, day/night survival pressure, one wisp enemy, pause, and local save/Continue. The in-game CUT LIST names the larger systems intentionally left out.
 
-## Not implemented
-
-This is not the full campaign in the original pitch. Five islands, additional biomes, the drowned cathedral and boss, NPCs/quests, the enemy roster and advanced AI, full crafting/economy, manual save slots, weather, audio, configurable settings, and measured long-session performance guarantees remain out of scope. The game file includes the same cut list; those features are not presented as working.
-
-## Checks
-
-JavaScript syntax and static structure pass. Browser smoke check on the committed build: title → start → rendered 3D scene/HUD → pause → save/return → Continue. Resource gathering, pack crafting, combat interaction, console-error capture, performance, and long-session stability remain unverified; no FPS or memory-growth guarantee is claimed.
+Checks: JavaScript syntax passes. Targeted smoke tests pass for movement after turning, pause on pointer-lock exit, depleted resource persistence, and victory → title → new-game flow. Food restoration, repeated-play GPU cleanup, Three.js upgrade, full campaign content, and long-session performance remain known limitations; no performance guarantees are made.
