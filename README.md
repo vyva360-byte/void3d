@@ -1,18 +1,20 @@
-# void3d
+# VOID3D: Beaconfall
 
-A single-file Three.js survival slice for Beaconfall.
+A single-file, first-person survival slice on one procedural pine coast. Gather timber and emberstone, make a torch, and relight the old beacon before night takes the shore.
 
 ## Play
 
-Open `index.html` in a modern browser with an internet connection. Three.js is loaded from jsDelivr.
+Open `index.html` in a modern browser with an internet connection. Three.js loads from jsDelivr.
 
-- WASD move, mouse look, Shift sprint, Space jump
-- E gathers or uses nearby objects; click attacks; I opens pack; Esc or P pauses
-- Gather 4 timber and 3 emberstone to relight the beacon
-- Enter a world seed for a repeatable coast. Continue restores the latest local save.
+- **WASD** move · **Mouse** look · **Shift** sprint · **Space** jump
+- **E** gather/use · **Click** strike · **I** pack · **Esc or P** pause
+- Gather **4 timber + 3 emberstone** to relight the beacon.
+- Enter a seed to regenerate the same coast. Progress autosaves locally; **Continue** restores gathered resources.
 
-## Verified scope
+## Verified
 
-One procedural pine coast, gathering, lantern crafting, one beacon objective, day/night survival pressure, one wisp enemy, pause, and local save/Continue. The in-game CUT LIST names the larger systems intentionally left out.
+Victor played the loop in Chromium with real WebGL: gathering, torch craft, beacon relight, wisp combat and reward, night damage/spawns, pause and save/Continue, with zero console errors. The recent fix pass also tested movement after a camera turn, Esc/pointer-lock pause, collected-resource persistence, victory return-to-title and starting a new run. Buildkite build #7 passed.
 
-Checks: JavaScript syntax passes. Targeted smoke tests pass for movement after turning, pause on pointer-lock exit, depleted resource persistence, and victory → title → new-game flow. Food restoration, repeated-play GPU cleanup, Three.js upgrade, full campaign content, and long-session performance remain known limitations; no performance guarantees are made.
+## Known limits
+
+No food restoration/source, no full campaign or extra biomes, and no measured long-session performance guarantee. Repeated-run GPU cleanup and upgrading from Three.js r160 UMD remain follow-up work. Wisps are not repelled by the hand torch, dead wisp entries remain in the array, and the minimap still needs a direction check. The in-game CUT LIST is the authority on excluded systems.
